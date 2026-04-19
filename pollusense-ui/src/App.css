@@ -1,0 +1,96 @@
+/* ============================================================
+   App.css — PolluSense Global Design System
+   Dark glassmorphism theme with vibrant AQI-colored accents
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* Background */
+  --bg-primary:    #040d1a;
+  --bg-secondary:  #071428;
+  --bg-card:       rgba(13, 28, 56, 0.75);
+  --bg-input:      rgba(255, 255, 255, 0.06);
+
+  /* Glass */
+  --glass-border:  rgba(99, 170, 255, 0.12);
+  --glass-shadow:  0 8px 40px rgba(0, 0, 0, 0.45);
+  --blur:          backdrop-filter: blur(14px);
+
+  /* Accent */
+  --accent:        #4f8ef7;
+  --accent-glow:   rgba(79, 142, 247, 0.35);
+  --accent-hover:  #6fa3ff;
+
+  /* AQI colours */
+  --aqi-good:          #2dd77b;
+  --aqi-moderate:      #f9c846;
+  --aqi-unhealthy:     #f97316;
+  --aqi-very-unhealthy:#e53e3e;
+  --aqi-hazardous:     #9f3fbf;
+
+  /* Text */
+  --text-primary:   #e8f0ff;
+  --text-secondary: #7fa3d4;
+  --text-muted:     #4a6a9a;
+
+  /* Spacing / Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Animated background gradient */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(30, 60, 120, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 90%, rgba(60, 20, 100, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(4, 13, 26, 1) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Shared Glass Card ─────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: var(--glass-shadow);
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }

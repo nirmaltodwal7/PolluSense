@@ -1,0 +1,336 @@
+/* ============================================================
+   Dashboard.css — layout & component styles
+   ============================================================ */
+
+/* ── Page Layout ───────────────────────────────────────────── */
+.dashboard-page {
+  min-height: 100vh;
+  padding: 0 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.header {
+  width: 100%;
+  padding: 22px 40px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(4, 13, 26, 0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 12px rgba(79, 142, 247, 0.8));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+.header-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6fa3ff 0%, #a78bfa 60%, #67e8f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 1px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* ── Main Content ──────────────────────────────────────────── */
+.main-content {
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Control Panel (inputs + button) ────────── */
+.control-panel {
+  padding: 32px 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  align-items: flex-end;
+}
+
+.control-panel h2 {
+  width: 100%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+/* ── Form Fields ───────────────────────────────────────────── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 180px;
+}
+
+.field-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.field-group select,
+.field-group input[type="date"],
+.field-group input[type="number"] {
+  background: var(--bg-input);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.field-group select:focus,
+.field-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* Style native date input for dark theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+/* Days range display */
+.days-value {
+  display: inline-block;
+  margin-left: 8px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ── Predict Button ────────────────────────────────────────── */
+.predict-btn {
+  padding: 13px 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, #3b6ef0 0%, #7c3aed 100%);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+  box-shadow: 0 4px 24px rgba(60, 100, 240, 0.4);
+  white-space: nowrap;
+  align-self: flex-end;
+  letter-spacing: 0.3px;
+}
+
+.predict-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(60, 100, 240, 0.6);
+}
+
+.predict-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.predict-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.predict-btn.loading {
+  opacity: 0.75;
+}
+
+/* ── Error Banner ──────────────────────────────────────────── */
+.error-banner {
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(229, 62, 62, 0.12);
+  border: 1px solid rgba(229, 62, 62, 0.35);
+  color: #fc8181;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Results Section ───────────────────────────────────────── */
+.results-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* Stat card */
+.stat-card {
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-value.aqi-good           { --accent: var(--aqi-good); }
+.stat-value.aqi-moderate       { --accent: var(--aqi-moderate); }
+.stat-value.aqi-unhealthy      { --accent: var(--aqi-unhealthy); }
+.stat-value.aqi-very-unhealthy { --accent: var(--aqi-very-unhealthy); }
+.stat-value.aqi-hazardous      { --accent: var(--aqi-hazardous); }
+
+/* Category badge */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.badge-good           { background: rgba(45, 215, 123, 0.15); color: var(--aqi-good);           border: 1px solid rgba(45, 215, 123, 0.35); }
+.badge-moderate       { background: rgba(249, 200, 70, 0.15);  color: var(--aqi-moderate);       border: 1px solid rgba(249, 200, 70, 0.35); }
+.badge-unhealthy      { background: rgba(249, 115, 22, 0.15);  color: var(--aqi-unhealthy);      border: 1px solid rgba(249, 115, 22, 0.35); }
+.badge-very-unhealthy { background: rgba(229, 62, 62, 0.15);   color: var(--aqi-very-unhealthy); border: 1px solid rgba(229, 62, 62, 0.35); }
+.badge-hazardous      { background: rgba(159, 63, 191, 0.15);  color: var(--aqi-hazardous);      border: 1px solid rgba(159, 63, 191, 0.35); }
+
+/* ── Alert Banner ──────────────────────────────────────────── */
+.alert-card {
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  background: rgba(229, 62, 62, 0.08);
+  border: 1px solid rgba(229, 62, 62, 0.35);
+  color: #feb2b2;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.55;
+  animation: pulse-border 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(229, 62, 62, 0.35); box-shadow: none; }
+  50%       { border-color: rgba(229, 62, 62, 0.65); box-shadow: 0 0 20px rgba(229, 62, 62, 0.15); }
+}
+
+/* ── Chart Panel ───────────────────────────────────────────── */
+.chart-panel {
+  padding: 28px 20px 20px;
+}
+
+.chart-panel h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  padding-left: 8px;
+}
+
+/* ── Skeleton Loader ───────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.1)  50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-stat  { height: 120px; }
+.skeleton-chart { height: 300px; }
+
+/* ── City tag row ──────────────────────────────────────────── */
+.city-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(79, 142, 247, 0.1);
+  border: 1px solid rgba(79, 142, 247, 0.25);
+  padding: 4px 10px;
+  border-radius: 30px;
+  width: fit-content;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 680px) {
+  .header {
+    padding: 16px 20px;
+  }
+  .header-title {
+    font-size: 1.2rem;
+  }
+  .control-panel {
+    padding: 24px 20px;
+    flex-direction: column;
+  }
+  .main-content {
+    padding: 24px 14px 0;
+  }
+  .stat-value {
+    font-size: 2.2rem;
+  }
+}

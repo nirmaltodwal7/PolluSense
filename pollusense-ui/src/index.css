@@ -1,0 +1,6 @@
+/* index.css — minimal global reset, all theming lives in App.css */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
